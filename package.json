@@ -1,0 +1,13 @@
+{
+  "name": "equestria-archive",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Catálogo My Little Pony com proxy local para a Pony API",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.21.0",
+    "express": "^5.3.0"
+  }
+}
