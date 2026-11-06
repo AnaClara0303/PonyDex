@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo pastel de My Little Pony com personagens, músicas, episódios e quadrinhos.">
+    <title>PonyDex • Catálogo My Little Pony</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    
+    <div class="page-shell">
+        <header class="topbar">
+            <p> Catálogo My Little Pony | API REST </p>
+            <a class="brand" href="#inicio" aria-label="Voltar ao início"><span class="brand-mark">✦</span><span>Pony<b>Dex</b></span></a>
+            <nav class="main-nav" aria-label="Navegação principal"><a class="nav-link active" href="#catalogo">Catálogo</a><a class="nav-link" href="#sobre">Sobre</a><button class="nav-link theme-toggle" id="themeToggle" type="button" aria-pressed="false">Tema claro</button></nav>
+            <div class="header-actions"><button class="language-toggle" id="languageToggle" type="button" aria-label="Mudar idioma para inglês">EN</button><span class="api-status" id="apiStatus"><span class="status-dot"></span> API conectada</span></div>
+        </header>
+        <main id="inicio">
+            
+            <section class="hero" id="catalogo"><div class="hero-copy"><p class="eyebrow">um cantinho para cada fã</p><h1>Descubra a magia<br><em>de Equestria.</em></h1><p class="hero-text">Personagens, músicas, episódios e quadrinhos reunidos em um só lugar para você explorar no seu ritmo.</p><a class="hero-action" href="#explorar">Explorar catálogo <span>↓</span></a></div><div class="hero-art" aria-hidden="true"></div></section>
+            <section class="catalog-section" id="explorar">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">biblioteca de equestria</p>
+                        <h2>O que você quer<br><em>explorar hoje?</em></h2>
+                    </div>
+                </div>
+                <div class="tabs" role="tablist" aria-label="Conteúdos de My Little Pony">
+                    <button class="tab active" data-category="characters" role="tab" type="button" aria-selected="true"><span>✦</span> Personagens <small>555</small></button>
+                    <button class="tab" data-category="songs" role="tab" type="button" aria-selected="false"><span>♫</span> Músicas <small>08</small></button>
+                    <button class="tab" data-category="episodes" role="tab" type="button" aria-selected="false"><span>▣</span> Episódios <small>26</small></button>
+                    <button class="tab" data-category="comics" role="tab" type="button" aria-selected="false"><span>▤</span> Quadrinhos <small>14</small></button>
+                </div>
+            <header class="navbar">
+    <p class="etiqueta">Personagens de Equestria</p>
+    <h1>PONY<span>DEX</span></h1>
+    <p>Encontre seus pôneis favoritos.</p>
+  </header>
+
+  <section class="container pony-dex" id="ponyDexContent" aria-label="PonyDex">
+    <form id="form-busca" class="painel filtros" role="search">
+      <div class="campo campo-busca">
+        <label for="busca">Nome do personagem</label>
+        <input id="busca" type="search" placeholder="Ex.: Twilight Sparkle"
+               maxlength="80" autocomplete="off">
+      </div>
+      <div class="campo">
+        <label for="filtro-status">Espécie</label>
+        <select id="filtro-status">
+          <option value="">Todas</option>
+          <option value="earth">Pônei terrestre</option>
+          <option value="pegasus">Pégaso</option>
+          <option value="unicorn">Unicórnio</option>
+          <option value="alicorn">Alicórnio</option>
+          <option value="other">Outras espécies</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="modo-api">Ordenar por</label>
+        <select id="modo-api">
+          <option value="featured" selected>Destaques</option>
+          <option value="az">Nome (A-Z)</option>
+          <option value="za">Nome (Z-A)</option>
+        </select>
+      </div>
+      <button type="submit" class="principal">Buscar</button>
+      <button type="button" id="btn-limpar">Limpar</button>
+    </form>
+
+    <div class="resumo">
+      <p id="status-api" role="status" aria-live="polite">Preparando a busca...</p>
+      <span id="total-resultados">—</span>
+    </div>
+    <button type="button" id="btn-tentar" hidden>Tentar novamente</button>
+
+    <nav class="painel painel-paginacao" aria-label="Paginação">
+      <button type="button" id="btn-anterior" disabled>← Anterior</button>
+      <p>Página <strong id="pagina-atual">—</strong> de
+        <strong id="total-paginas">—</strong></p>
+      <button type="button" id="btn-proxima" disabled>Próxima →</button>
+    </nav>
+
+    <details class="painel laboratorio">
+      <summary>Inspecionar a requisição do servidor para a Pony API</summary>
+      <p>O navegador consulta nosso Express, que acessa os dados de My Little Pony pela API REST.</p>
+      <pre id="inspector">Aguardando os dados da Pony API.</pre>
+    </details>
+
+    <section id="vitrine" class="catalog-grid" aria-label="Personagens"
+             aria-busy="false"></section>
+  </section>
+                <div id="archiveContent" hidden>
+                <div class="filter-panel" id="filterPanel">
+                    <span>Mostrar:</span>
+                    <button class="filter-chip active" data-filter="all" type="button">Tudo</button>
+                    <button class="filter-chip" data-filter="favorites" type="button">♡ Favoritos</button>
+                    <label>
+                        <span id="seasonLabel">Temporada</span>
+                        <select id="seasonSelect"><option value="all">Todas</option></select>
+                    </label>
+                    
+                </div>
+                <div class="results-meta"><span id="resultsLabel">12 itens encontrados</span><span class="live-note" id="sourceLabel">Dados sincronizados com Pony API</span></div><div class="catalog-grid" id="catalogGrid" aria-live="polite"></div><div class="empty-state" id="emptyState" hidden>Nenhum item encontrado. Tente outra busca.</div>
+                </div>
+            </section>
+            <section class="about-band" id="sobre"><div class="about-symbol">✹</div><div><p class="eyebrow">feito para explorar</p><h2>Amizade é a nossa<br><em>melhor aventura.</em></h2></div><p>Uma coleção leve e colorida para revisitar histórias, encontrar seu personagem favorito e descobrir novos momentos de Equestria.</p></section>
+        </main>
+        <footer><span>✦ PonyDex</span><span>Catálogo não oficial para fins de estudo</span></footer>
+    </div>
+    <div class="modal-backdrop" id="modalBackdrop" hidden><article class="detail-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="close-modal" id="closeModal" type="button" aria-label="Fechar">×</button><div id="modalContent"></div></article></div>
+    <div class="image-lightbox" id="imageLightbox" hidden role="dialog" aria-modal="true" aria-label="Imagem ampliada"><button class="lightbox-close" id="closeLightbox" type="button" aria-label="Fechar imagem">×</button><img id="lightboxImage" alt=""></div>
+    <script src="script.js"></script>
+</body>
+</html>
